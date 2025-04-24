@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Curso</title>
+
+  <!-- Incluir Bootstrap CSS desde CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+</head>
+<body class="bg-light">
+
+  <div class="container my-5">
+    <h2>Crear un Nuevo Curso</h2>
+
+    <!-- Formulario para crear un curso -->
+    <form action="#" method="POST">
+      <div class="mb-3">
+        <label for="cursoNombre" class="form-label">Nombre del Curso</label>
+        <input type="text" class="form-control" id="cursoNombre" name="cursoNombre" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="cursoDescripcion" class="form-label">Descripción</label>
+        <textarea class="form-control" id="cursoDescripcion" name="cursoDescripcion" rows="4" required></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="cursoInstructor" class="form-label">Instructor</label>
+        <input type="text" class="form-control" id="cursoInstructor" name="cursoInstructor" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="cursoDuracion" class="form-label">ID</label>
+        <input type="number" class="form-control" id="identificacion" name="cursoidentificacion" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Crear Curso</button>
+    </form>
+  </div>
+
+  <!-- Incluir Bootstrap JS y Popper.js desde CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

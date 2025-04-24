@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrar Profesores</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+  <div class="container my-4">
+    <!-- Botones de navegación -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <a href="admin.html" class="btn btn-success">
+          <i class="bi bi-arrow-repeat"></i> Actualizar Curso y Alumno
+        </a>
+        <a href="adminprofesores.html" class="btn btn-warning">
+          <i class="bi bi-person-badge"></i> Administrar Profesores
+        </a>
+      </div>
+      <a href="iniciarsesion.html" class="btn btn-danger">
+        <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+      </a>
+    </div>
+
+    <!-- Barra de búsqueda -->
+    <div class="input-group mb-4 w-50 mx-auto">
+      <input type="text" class="form-control" placeholder="Buscar profesor..." aria-label="Buscar profesor">
+      <button class="btn btn-outline-secondary" type="button">
+        <i class="bi bi-search"></i> Buscar
+      </button>
+    </div>
+
+    <!-- Título -->
+    <h4 class="text-center mb-4">Lista de Profesores</h4>
+
+    <!-- Botón para crear un nuevo profesor -->
+    <div class="text-end mb-3">
+      <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+        <i class="bi bi-person-plus"></i> Crear Nuevo Profesor
+      </a>
+    </div>
+
+    <!-- Contenedor de la tabla -->
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Identificación</th>
+            <th>Curso</th>
+            <th>Ambiente</th>
+            <th>Correo</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pedro</td>
+            <td>Gómez</td>
+            <td>123456789</td>
+            <td>Matemáticas</td>
+            <td>Ambiente 101</td>
+            <td>pedro.gomez@example.com</td>
+            <td>
+              <a href="#" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal" onclick="setProfesorData('Pedro', 'Gómez', '123456789', 'Matemáticas', 'Ambiente 101', 'pedro.gomez@example.com')">
+                <i class="bi bi-pencil"></i> Actualizar
+              </a>
+              <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" onclick="setDeleteId(1)">
+                <i class="bi bi-trash"></i> Eliminar
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Laura</td>
+            <td>Martínez</td>
+            <td>987654321</td>
+            <td>Física</td>
+            <td>Ambiente 202</td>
+            <td>laura.martinez@example.com</td>
+            <td>
+              <a href="#" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal" onclick="setProfesorData('Laura', 'Martínez', '987654321', 'Física', 'Ambiente 202', 'laura.martinez@example.com')">
+                <i class="bi bi-pencil"></i> Actualizar
+              </a>
+              <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" onclick="setDeleteId(2)">
+                <i class="bi bi-trash"></i> Eliminar
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal para crear profesor -->
+  <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="createModalLabel">Crear Nuevo Profesor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="nuevoProfesorNombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nuevoProfesorNombre">
+            </div>
+            <div class="mb-3">
+              <label for="nuevoProfesorApellido" class="form-label">Apellido</label>
+              <input type="text" class="form-control" id="nuevoProfesorApellido">
+            </div>
+            <div class="mb-3">
+              <label for="nuevoProfesorIdentificacion" class="form-label">Identificación</label>
+              <input type="text" class="form-control" id="nuevoProfesorIdentificacion">
+            </div>
+            <div class="mb-3">
+              <label for="nuevoProfesorCurso" class="form-label">Curso</label>
+              <input type="text" class="form-control" id="nuevoProfesorCurso">
+            </div>
+            <div class="mb-3">
+              <label for="nuevoProfesorAmbiente" class="form-label">Ambiente</label>
+              <input type="text" class="form-control" id="nuevoProfesorAmbiente">
+            </div>
+            <div class="mb-3">
+              <label for="nuevoProfesorCorreo" class="form-label">Correo</label>
+              <input type="email" class="form-control" id="nuevoProfesorCorreo">
+            </div>
+            <button type="button" class="btn btn-primary">
+              <i class="bi bi-save"></i> Guardar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para actualizar profesor -->
+  <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateModalLabel">Actualizar Profesor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="profesorNombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="profesorNombre">
+            </div>
+            <div class="mb-3">
+              <label for="profesorApellido" class="form-label">Apellido</label>
+              <input type="text" class="form-control" id="profesorApellido">
+            </div>
+            <div class="mb-3">
+              <label for="profesorIdentificacion" class="form-label">Identificación</label>
+              <input type="text" class="form-control" id="profesorIdentificacion">
+            </div>
+            <div class="mb-3">
+              <label for="profesorCurso" class="form-label">Curso</label>
+              <input type="text" class="form-control" id="profesorCurso">
+            </div>
+            <div class="mb-3">
+              <label for="profesorAmbiente" class="form-label">Ambiente</label>
+              <input type="text" class="form-control" id="profesorAmbiente">
+            </div>
+            <div class="mb-3">
+              <label for="profesorCorreo" class="form-label">Correo</label>
+              <input type="email" class="form-control" id="profesorCorreo">
+            </div>
+            <button type="button" class="btn btn-primary">
+              <i class="bi bi-save"></i> Guardar Cambios
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para confirmar eliminación -->
+  <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmDeleteModalLabel">Eliminar Profesor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ¿Estás seguro de que deseas eliminar este profesor?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            <i class="bi bi-x-circle"></i> Cancelar
+          </button>
+          <button type="button" class="btn btn-danger">
+            <i class="bi bi-trash"></i> Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
